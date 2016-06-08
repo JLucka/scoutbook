@@ -1,0 +1,15 @@
+= simple_form_for(@scout) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :pesel
+    = f.input :address
+    = f.input :mothers_name
+    = f.input :fathers_name
+    = f.input :rank, collection: Scout.ranks.map{ |rank| [Scout.get_full_rank_name(rank[0]), rank[0]] }, default: 0
+    = f.input :position
+    = f.association :patrol
+  .form-actions
+    = f.button :submit

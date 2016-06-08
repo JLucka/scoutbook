@@ -1,0 +1,9 @@
+= simple_form_for(@patrol) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.association :troop
+
+  .form-actions
+    = f.button :submit

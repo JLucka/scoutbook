@@ -1,0 +1,34 @@
+.text-center
+  %h2 Scouts
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th= sortable "first_name"
+      %th= sortable "last_name"
+      %th Pesel
+      %th Address
+      %th= sortable "rank"
+      %th= sortable "position"
+      %th
+      %th
+      %th
+
+  %tbody
+    - @scouts.each do |scout|
+      %tr
+        %td= scout.first_name
+        %td= scout.last_name
+        %td= scout.pesel
+        %td= scout.address
+        %td= Scout.get_full_rank_name(scout.rank)
+        %td= scout.position
+        %td= link_to 'Show', scout
+        %td= link_to 'Edit', edit_scout_path(scout)
+        %td= link_to 'Dismiss', scout, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to new_scout_path, class: 'btn btn-info' do
+  %i.fa.fa-plus
+  Add a scout

@@ -1,0 +1,32 @@
+.text-center
+  %h2 Troops
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Patron
+      %th District
+      %th Region
+      %th Patrols
+      %th Scouts
+      %th
+      %th
+
+  %tbody
+    - @troops.each do |troop|
+      %tr
+        %td= link_to troop.full_name, troop
+        %td= troop.patron
+        %td= troop.district
+        %td= troop.region
+        %td= troop.patrols.count
+        %td= troop.scouts.count
+        %td= link_to 'Edit', edit_troop_path(troop)
+        %td= link_to 'Destroy', troop, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to new_troop_path, class: 'btn btn-info' do
+  %i.fa.fa-plus
+  Add a troop

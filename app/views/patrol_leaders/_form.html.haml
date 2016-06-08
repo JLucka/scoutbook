@@ -1,0 +1,10 @@
+= simple_form_for(@patrol_leader) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :phone
+    = f.input :course
+    = f.input :scout_id, collection: Scout.all.map{ |scout| [scout.full_name, scout.id] }
+    = f.association :patrol
+  .form-actions
+    = f.button :submit

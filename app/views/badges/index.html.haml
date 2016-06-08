@@ -1,0 +1,34 @@
+.text-center
+  %h2 Badges
+
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th= sortable "name"
+      %th= sortable "stars"
+      %th= sortable "scout_id"
+      %th= sortable "opened_at"
+      %th= sortable "closed_at"
+      %th
+      %th
+
+  %tbody
+    - @badges.each do |badge|
+      %tr
+        %td= badge.name
+        %td= badge.stars
+        %td= link_to badge.scout.full_name, badge.scout
+        %td= badge.opened_at.strftime("%d.%m.%Y")
+        %td
+          - if badge.closed_at
+            = badge.closed_at.strftime("%d.%m.%Y")
+          - else
+            = link_to "Close Now", close_badge_path(badge)
+        %td= link_to 'Edit', edit_badge_path(badge)
+        %td= link_to 'Delete', badge, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to new_badge_path, class: 'btn btn-info' do
+  %i.fa.fa-plus
+  Open a badge

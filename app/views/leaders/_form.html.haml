@@ -1,0 +1,12 @@
+= simple_form_for(@leader) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :scout_id, collection: Scout.all.map{ |scout| [scout.full_name, scout.id] }
+    = f.association :troop
+    = f.input :leader_rank, collection: Leader.leader_ranks.keys, default: 0
+    = f.input :position, collection: ["Team Leader", "Assistant Leader"]
+    = f.input :phone
+
+  .form-actions
+    = f.button :submit

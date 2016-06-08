@@ -1,0 +1,48 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-default
+        .panel-heading.text-center
+          %b= "#{@scout.rank}. #{@scout.first_name} #{@scout.last_name}"
+        .panel-body
+          %p
+            %b= "PESEL:"
+            = @scout.pesel
+          %p
+            %b= "Address:"
+            = @scout.address
+          %p
+            %b= "Mother's Name:"
+            = @scout.mothers_name
+          %p
+            %b= "Father's Name:"
+            = @scout.fathers_name
+          %p
+            %b= "Rank:"
+            = Scout.get_full_rank_name(@scout.rank)
+          %p
+            %b= "Position:"
+            = @scout.position
+          - if @scout.patrol
+            %p
+              %b= "Patrol:"
+              = link_to @scout.patrol.name, @scout.patrol
+          - if @scout.scoutable_type == "Leader"
+            %p
+              %b= "Leader Rank:"
+              = Leader.get_full_rank_name(@scout.scoutable.leader_rank)
+          %p
+            %b= "Badges:"
+            %ul
+              - @badges.each do |badge|
+                %li
+                  = link_to "#{badge.name} #{badge.stars}", badge
+          %p
+            %b= "Open Badges:"
+            %ul
+              - @open_badges.each do |badge|
+                %li
+                  = link_to "#{badge.name} #{badge.stars}", badge
+          = link_to 'Edit', edit_scout_path(@scout)
+          \|
+          = link_to 'Back', scouts_path

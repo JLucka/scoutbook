@@ -1,0 +1,28 @@
+.container
+  .row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default
+      .panel-heading.text-center
+        %h4= @troop.full_name
+      .panel-body
+        %p
+          %b= "Patron:"
+          = @troop.patron
+        %p
+          %b= "District:"
+          = @troop.district
+        %p
+          %b= "Region:"
+          = @troop.region
+        %p
+          %b= "Patrols:"
+          %ul
+            - @patrols.each do |patrol|
+              %li
+                = link_to patrol.name, patrol
+
+
+
+        = link_to 'Edit', edit_troop_path(@troop)
+        \|
+        = link_to 'Back', troops_path

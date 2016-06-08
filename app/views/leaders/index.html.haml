@@ -1,0 +1,26 @@
+.text-center
+  %h2 Leaders
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Position
+      %th Troop
+      %th Phone
+      %th
+
+  %tbody
+    - @leaders.each do |leader|
+      %tr
+        %td= link_to leader.scout.full_name, leader.scout
+        %td= leader.scout.position
+        %td= link_to leader.troop.name, leader.troop
+        %td= leader.phone
+        %td= link_to 'Dismiss', leader, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to new_leader_path, class: 'btn btn-info' do
+  Appoint new leader
+  %i.fa.fa-arrow-right

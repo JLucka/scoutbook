@@ -1,0 +1,13 @@
+= simple_form_for(@troop) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :full_name
+    = f.input :name
+    = f.input :number
+    = f.input :patron
+    = f.input :district
+    = f.input :region
+
+  .form-actions
+    = f.button :submit
