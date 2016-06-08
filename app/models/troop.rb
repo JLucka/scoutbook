@@ -6,4 +6,8 @@ class Troop < ActiveRecord::Base
 
   validates :full_name, :name, :number, :region, :district, presence: true
   validates_numericality_of :number
+
+  def team_leader
+    self.leaders.joins(:scout).where(scouts: { position: "Team Leader" }).first.scout
+  end
 end

@@ -18,7 +18,7 @@
       %tr
         %td= order.full_number
         %td= order.troop.name
-        %td= order.quote.truncate(30)
+        %td= order.quote ? order.quote.truncate(30) : ""
         %td= order.opened_badges.count
         %td= order.closed_badges.count
         %td
@@ -26,7 +26,10 @@
             = order.finished_at.strftime("%d.%m.%Y")
           - else
             = link_to 'Close', close_order_path(order)
-        %td= link_to 'Show', order
+        %td
+          = link_to 'Camp', order_path(id: order, kind: "camp")
+          = link_to 'Winter', order_path(id: order, kind: "winter")
+          = link_to 'Normal', order
         %td= link_to 'Edit', edit_order_path(order)
 
 %br

@@ -8,5 +8,21 @@
       =link_to @order.troop.full_name, @order.troop
     .form-inputs
       = f.input :quote
+    %p
+    %b= "Opened Badges:"
+    %ul
+      - @opened_badges.each do |badge|
+        %li
+          = link_to badge.scout.full_name, badge.scout
+          = "-"
+          =  "#{badge.name} #{badge.stars}"
+    %p
+      %b= "Closed Badges:"
+      %ul
+        - @closed_badges.each do |badge|
+          %li
+            = link_to badge.scout.full_name, badge.scout
+            = "-"
+            = "#{badge.name} #{badge.stars}"
     .form-actions
       = f.button :submit

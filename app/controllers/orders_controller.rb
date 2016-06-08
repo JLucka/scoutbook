@@ -14,6 +14,8 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    @opened_badges = @order.opened_badges
+    @closed_badges = @order.closed_badges
   end
 
   def close
@@ -46,8 +48,12 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @opened_badges = @order.opened_badges
-    @closed_badges = @order.closed_badges
+    strategy = @order.get_describer(params[:kind])
+    strategy.describe_order
+    @header = strategy.header
+    @middle = strategy.middle
+    @badges = strategy.badges
+    @signature = strategy.signature
   end
 
   private
@@ -57,7 +63,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:quote, :number, :troop_id)
+    params.require(:order).permit(:quote, :number, :troop_id, :kind)
   end
 
 end

@@ -18,7 +18,7 @@ class BadgesController < InheritedResources::Base
   def close
     @badge.closed_at = Time.now
     @badge.save
-    redirect_to @badge, notice: 'Badge was successfully given.'
+    redirect_to badges_path, notice: 'Badge was successfully given.'
   end
 
   def update

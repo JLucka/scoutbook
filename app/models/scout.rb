@@ -7,11 +7,15 @@ class Scout < ActiveRecord::Base
   belongs_to :patrol
 
   enum rank: [:bs, :hpp, :och, :trop, :sam, :wedr, :HR]
-  @full_ranks = {:bs => "Bez Stopnia", :hpp => "Harcerka po próbie", :och => "Ochotniczka",
+  FULL_RANKS = {:bs => "Bez Stopnia", :hpp => "Harcerka po próbie", :och => "Ochotniczka",
   :trop => "Tropicielka", :sam => "Samarytanka", :wedr => "Wędrowniczka", :HR => "Harcerka Rzeczypospolitej"}
 
   def full_name
-    "#{rank}. #{first_name} #{last_name}"
+    if scoutable_type == "Leader" && scoutable.leader_rank != "brak"
+      "#{scoutable.leader_rank}. #{first_name} #{last_name} #{rank}."
+    else
+      "#{rank}. #{first_name} #{last_name}"
+    end
   end
 
   def troop
@@ -25,6 +29,6 @@ class Scout < ActiveRecord::Base
   private
 
   def self.get_full_rank_name(rank)
-    @full_ranks[rank.to_sym]
+    FULL_RANKS[rank.to_sym]
   end
 end

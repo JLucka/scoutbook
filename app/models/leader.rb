@@ -8,11 +8,11 @@ class Leader < ActiveRecord::Base
   validates :scout_id, :position, :troop_id, :leader_rank, presence: true
 
   enum leader_rank: [:brak, :pwd, :phm, :hm]
-  @full_ranks = {:brak => "Brak", :pwd => "Przewodniczka", :phm => "Podharcmistrzyni",
+  FULL_RANKS = {:brak => "Brak", :pwd => "Przewodniczka", :phm => "Podharcmistrzyni",
                  :hm => "Harcmistrzyni"}
 
   def self.get_full_rank_name(rank)
-    @full_ranks[rank.to_sym]
+    FULL_RANKS[rank.to_sym]
   end
 
 end

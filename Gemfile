@@ -16,7 +16,7 @@ gem 'pg'
 gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
-
+gem 'rails-observers'
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_admin_theme'
