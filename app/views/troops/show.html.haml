@@ -20,6 +20,12 @@
             - @patrols.each do |patrol|
               %li
                 = link_to patrol.name, patrol
+        %p
+          %b= "Leaders:"
+          %ul
+            - @leaders.each do |leader|
+              %li
+                = link_to leader.scout.full_name, leader.scout
 
 
 

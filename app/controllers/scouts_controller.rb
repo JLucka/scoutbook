@@ -1,8 +1,10 @@
 class ScoutsController < InheritedResources::Base
+  include SortableDecorator
   before_action :set_scout, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column, :sort_direction
 
   def index
+    @sort_param = "last_name"
+    @sort_model = Scout
     @scouts = Scout.all.order(sort_column + " " + sort_direction)
   end
 
@@ -41,14 +43,6 @@ class ScoutsController < InheritedResources::Base
   end
 
   private
-
-  def sort_column
-    Scout.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
 
   def set_scout
     @scout = Scout.find(params[:id])

@@ -13,12 +13,16 @@
         - if current_user
           %li= link_to "Scouts", scouts_path
           %li= link_to "Badges", badges_path
-          %li= link_to "Troops", troops_path
-          %li= link_to "Leaders", leaders_path
-          %li= link_to "Patrols", patrols_path
-          %li= link_to "Patrol Leaders", patrol_leaders_path
-          - if current_user.admin?
-            %li= link_to "Admin", admin_root_path
+          - if current_user.admin? || current_user.leader?
+            %li= link_to "Patrols", patrols_path
+            %li= link_to "Patrol Leaders", patrol_leaders_path
+            %li= link_to "Leaders", leaders_path
+            %li= link_to "Orders", orders_path
+            - if current_user.admin?
+              %li= link_to "Admin", admin_root_path
+              %li= link_to "Troops", troops_path
+            - else
+              %li= link_to "My Troop", current_user.accountable.troop
           %li= link_to "Edit Account", edit_user_registration_path
           %li= link_to "Sign Out", destroy_user_session_path, method: :delete
         - else

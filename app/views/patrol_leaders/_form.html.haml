@@ -5,6 +5,7 @@
     = f.input :phone
     = f.input :course
     = f.input :scout_id, collection: Scout.all.map{ |scout| [scout.full_name, scout.id] }
+    = f.input :user_id, collection: User.all.map{ |user| [user.email, user.id] }
     = f.association :patrol
   .form-actions
     = f.button :submit

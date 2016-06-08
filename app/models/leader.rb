@@ -3,7 +3,7 @@ class Leader < ActiveRecord::Base
   has_one :scout, as: :scoutable
   belongs_to :troop
 
-  attr_accessor :scout_id, :position
+  attr_accessor :scout_id, :position, :user_id
 
   validates :scout_id, :position, :troop_id, :leader_rank, presence: true
 

@@ -7,6 +7,7 @@ class TroopsController < InheritedResources::Base
 
   def show
     @patrols = @troop.patrols
+    @leaders = @troop.leaders
   end
 
   def new

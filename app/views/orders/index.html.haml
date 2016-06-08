@@ -1,0 +1,34 @@
+.text-center
+  %h2 Orders
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th= sortable "number"
+      %th= sortable "troop_id"
+      %th Quote
+      %th Opened Badges
+      %th Closed Badges
+      %th Published Date
+      %th
+      %th
+
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td= order.full_number
+        %td= order.troop.name
+        %td= order.quote.truncate(30)
+        %td= order.opened_badges.count
+        %td= order.closed_badges.count
+        %td
+          - if order.finished_at
+            = order.finished_at.strftime("%d.%m.%Y")
+          - else
+            = link_to 'Close', close_order_path(order)
+        %td= link_to 'Show', order
+        %td= link_to 'Edit', edit_order_path(order)
+
+%br
+
+= link_to 'Current Order', new_order_path, class: 'btn btn-info'

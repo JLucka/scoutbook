@@ -9,12 +9,10 @@ class PatrolLeadersController < InheritedResources::Base
   end
 
   def create
-    @patrol_leader = PatrolLeader.create(patrol_leader_params)
+    scout_id = patrol_leader_params[:scout_id]
+    user_id = patrol_leader_params[:user_id]
+    @patrol_leader = LeaderBuilder.new(PatrolLeader).build_leader(patrol_leader_params, scout_id, user_id)
     if @patrol_leader.save
-      @patrol_leader.scout = Scout.find(patrol_leader_params[:scout_id])
-      @patrol_leader.scout.update(position: "Patrol Leader")
-      @patrol_leader.scout.patrol = @patrol_leader.patrol
-      @patrol_leader.scout.save
       redirect_to patrol_leaders_path, notice: 'Patrol Leader was successfully appointed.'
     else
       render :new
@@ -24,6 +22,6 @@ class PatrolLeadersController < InheritedResources::Base
   private
 
     def patrol_leader_params
-      params.require(:patrol_leader).permit(:phone, :course, :scout_id, :patrol_id)
+      params.require(:patrol_leader).permit(:phone, :course, :scout_id, :patrol_id, :user_id)
     end
 end

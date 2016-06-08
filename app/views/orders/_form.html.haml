@@ -1,0 +1,12 @@
+.text-center
+  = simple_form_for(@order) do |f|
+    = f.error_notification
+    %h4
+      = @order.full_number
+    %p
+      %b
+      =link_to @order.troop.full_name, @order.troop
+    .form-inputs
+      = f.input :quote
+    .form-actions
+      = f.button :submit

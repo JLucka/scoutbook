@@ -14,6 +14,14 @@ class Scout < ActiveRecord::Base
     "#{rank}. #{first_name} #{last_name}"
   end
 
+  def troop
+    if self.scoutable_type == "Leader"
+      self.scoutable.troop
+    else
+      self.patrol.troop
+    end
+  end
+
   private
 
   def self.get_full_rank_name(rank)

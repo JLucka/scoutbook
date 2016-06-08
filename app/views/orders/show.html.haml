@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-default
+        .text-center
+          %h4
+            = @order.full_number
+          %p
+            %b
+            =link_to @order.troop.full_name, @order.troop
+          %p
+            = @order.quote
+          %p
+            %b
+              Date:
+            = @order.finished_at ? @order.finished_at.strftime("%d.%m.%Y") : "Not published yet"
+        %p
+          %b= "Opened Badges:"
+          %ul
+            - @opened_badges.each do |badge|
+              %li
+                = link_to badge.scout.full_name, badge.scout
+                = "-"
+                =  "#{badge.name} #{badge.stars}"
+        %p
+          %b= "Closed Badges:"
+          %ul
+            - @closed_badges.each do |badge|
+              %li
+                = link_to badge.scout.full_name, badge.scout
+                = "#{badge.name} #{badge.stars}"
+
+
+
+          = link_to 'Edit', edit_order_path(@order)
+        \|
+        = link_to 'Back', orders_path

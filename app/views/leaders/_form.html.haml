@@ -3,6 +3,7 @@
 
   .form-inputs
     = f.input :scout_id, collection: Scout.all.map{ |scout| [scout.full_name, scout.id] }
+    = f.input :user_id, collection: User.all.map{ |user| [user.email, user.id] }
     = f.association :troop
     = f.input :leader_rank, collection: Leader.leader_ranks.keys, default: 0
     = f.input :position, collection: ["Team Leader", "Assistant Leader"]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608013523) do
+ActiveRecord::Schema.define(version: 20160608180435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,14 +33,18 @@ ActiveRecord::Schema.define(version: 20160608013523) do
 
   create_table "badges", force: :cascade do |t|
     t.string   "name"
-    t.integer  "stars",      default: 1
+    t.integer  "stars",            default: 1
     t.integer  "scout_id"
-    t.datetime "opened_at",  default: '2016-06-07 23:44:37'
+    t.datetime "opened_at",        default: '2016-06-07 23:44:37'
     t.datetime "closed_at"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.integer  "closing_order_id"
+    t.integer  "opening_order_id"
   end
 
+  add_index "badges", ["closing_order_id"], name: "index_badges_on_closing_order_id", using: :btree
+  add_index "badges", ["opening_order_id"], name: "index_badges_on_opening_order_id", using: :btree
   add_index "badges", ["scout_id"], name: "index_badges_on_scout_id", using: :btree
 
   create_table "leaders", force: :cascade do |t|
@@ -53,6 +57,18 @@ ActiveRecord::Schema.define(version: 20160608013523) do
   end
 
   add_index "leaders", ["troop_id"], name: "index_leaders_on_troop_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.boolean  "open",        default: true
+    t.integer  "number"
+    t.datetime "finished_at"
+    t.string   "quote"
+    t.integer  "troop_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "orders", ["troop_id"], name: "index_orders_on_troop_id", using: :btree
 
   create_table "patrol_leaders", force: :cascade do |t|
     t.string   "phone"

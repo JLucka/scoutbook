@@ -1,8 +1,10 @@
 class BadgesController < InheritedResources::Base
+  include SortableDecorator
   before_action :set_badge, only: [:edit, :update, :destroy, :close]
-  helper_method :sort_column, :sort_direction
 
   def index
+    @sort_param = "name"
+    @sort_model = Badge
     @badges = Badge.all.order(sort_column + " " + sort_direction)
   end
 
@@ -43,14 +45,6 @@ class BadgesController < InheritedResources::Base
 
 
   private
-
-    def sort_column
-      Badge.column_names.include?(params[:sort]) ? params[:sort] : "name"
-    end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
 
     def set_badge
       @badge = Badge.find(params[:id])
