@@ -43,7 +43,6 @@ class BadgesController < InheritedResources::Base
     redirect_to badges_url, notice: 'Badge was successfully destroyed.'
   end
 
-
   private
 
     def set_badge

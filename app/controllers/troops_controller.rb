@@ -49,4 +49,3 @@ class TroopsController < InheritedResources::Base
       params.require(:troop).permit(:name, :full_name, :number, :patron, :district, :region)
   end
 end
-

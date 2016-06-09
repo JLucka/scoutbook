@@ -40,12 +40,11 @@ class PatrolsController < InheritedResources::Base
 
   private
 
-  def set_patrol
-    @patrol = Patrol.find(params[:id])
-  end
+    def set_patrol
+      @patrol = Patrol.find(params[:id])
+    end
 
     def patrol_params
       params.require(:patrol).permit(:name, :troop_id)
     end
 end
-

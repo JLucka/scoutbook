@@ -21,7 +21,7 @@ gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_admin_theme'
 gem 'font-awesome-rails'
-
+gem 'simplecov'
 
 group :development do
   gem 'web-console', '~> 2.0'

@@ -25,4 +25,3 @@ class LeadersController < InheritedResources::Base
       params.require(:leader).permit(:leader_rank, :phone, :troop_id, :scout_id, :position, :user_id)
     end
 end
-
