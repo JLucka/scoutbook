@@ -8,6 +8,10 @@ class Troop < ActiveRecord::Base
   validates_numericality_of :number
 
   def team_leader
-    self.leaders.joins(:scout).where(scouts: { position: "Team Leader" }).first.scout
+    leader = self.leaders.joins(:scout).where(scouts: { position: "Team Leader" }).first.scout
+  end
+
+  def get_scout_count
+    self.scouts.count + self.leaders.count
   end
 end

@@ -19,9 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def close
-    @order.finished_at = Time.now
-    @order.open = false
-    @order.save
+    @order.close
     redirect_to @order, notice: 'Order was successfully given.'
   end
 

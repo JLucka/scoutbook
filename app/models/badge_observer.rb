@@ -1,7 +1,9 @@
 class BadgeObserver < ActiveRecord::Observer
   def after_create(badge)
-    order = GetOrderService.new.call(badge.scout.troop)
-    badge.update(opening_order: order)
+    if badge.scout && badge.scout.troop
+      order = GetOrderService.new.call(badge.scout.troop)
+      badge.update(opening_order: order)
+    end
   end
 
   def after_save(badge)

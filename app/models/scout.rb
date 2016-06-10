@@ -21,12 +21,10 @@ class Scout < ActiveRecord::Base
   def troop
     if self.scoutable_type == "Leader"
       self.scoutable.troop
-    else
+    elsif self.patrol
       self.patrol.troop
     end
   end
-
-  private
 
   def self.get_full_rank_name(rank)
     FULL_RANKS[rank.to_sym]

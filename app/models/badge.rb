@@ -6,4 +6,9 @@ class Badge < ActiveRecord::Base
   validates :scout, :name, :stars, :opened_at, presence: true
 
   enum stars: [:*, :**, :"***", :M]
+
+  def close
+    self.closed_at = DateTime.now
+    self.save
+  end
 end

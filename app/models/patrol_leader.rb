@@ -5,6 +5,6 @@ class PatrolLeader < ActiveRecord::Base
   has_one :scout, as: :scoutable
   belongs_to :patrol
 
-  validates :scout_id, :patrol_id, presence: true
+  validates :patrol_id, presence: true
 
 end

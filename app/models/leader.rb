@@ -5,7 +5,7 @@ class Leader < ActiveRecord::Base
 
   attr_accessor :scout_id, :position, :user_id
 
-  validates :scout_id, :position, :troop_id, :leader_rank, presence: true
+  validates :troop_id, :leader_rank, presence: true
 
   enum leader_rank: [:brak, :pwd, :phm, :hm]
   FULL_RANKS = {:brak => "Brak", :pwd => "Przewodniczka", :phm => "Podharcmistrzyni",
