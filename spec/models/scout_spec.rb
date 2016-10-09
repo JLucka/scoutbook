@@ -16,10 +16,6 @@ RSpec.describe Scout, type: :model do
     it { should belong_to(:patrol) }
   end
 
-  # it 'is not valid with bad leader rank' do
-  #   expect { build(:leader, leader_rank: :super_hm) }.to raise_error(ArgumentError).with_message(/is not a valid leader_rank/)
-  # end
-  #
   it 'gets correct full rank name from string' do
     full_rank = Scout.get_full_rank_name("och")
     expect(full_rank).to eq("Ochotniczka")

@@ -5,7 +5,7 @@ class BadgesController < InheritedResources::Base
   def index
     @sort_param = "name"
     @sort_model = Badge
-    @badges = Badge.all.order(sort_column + " " + sort_direction)
+    @badges = Badge.order(sort_column + " " + sort_direction)
   end
 
   def new

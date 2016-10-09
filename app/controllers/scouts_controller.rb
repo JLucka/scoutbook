@@ -5,7 +5,7 @@ class ScoutsController < InheritedResources::Base
   def index
     @sort_param = "last_name"
     @sort_model = Scout
-    @scouts = Scout.all.order(sort_column + " " + sort_direction)
+    @scouts = current_user.scouts.order(sort_column + " " + sort_direction)
   end
 
   def show

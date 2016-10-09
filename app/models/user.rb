@@ -21,4 +21,14 @@ class User < ActiveRecord::Base
       self.accountable.patrol.troop
     end
   end
+
+  def scouts
+    if admin?
+      Scout.all
+    elsif leader?
+      troop.scouts
+    else
+      accountable.patrol.scouts
+    end
+  end
 end

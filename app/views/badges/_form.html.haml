@@ -4,8 +4,8 @@
   .form-inputs
     = f.input :name
     = f.input :stars, collection: Badge.stars.keys
-    = f.association :scout, collection: Scout.all.map{ |scout| [scout.full_name, scout.id] }
+    = f.association :scout, collection: current_user.scouts.map{ |scout| [scout.full_name, scout.id] }
     = f.input :opened_at, as: :date
     = f.input :closed_at, :as => :date, :include_blank => true
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: 'btn btn-success'
